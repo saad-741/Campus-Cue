@@ -1,0 +1,99 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Student signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="auth-shell d-flex align-items-center py-5">
+    <div class="container">
+        <div class="auth-panel overflow-hidden mx-auto shadow-lg rounded-4" style="max-width: 1040px; background-color: #1e293b; border: 1px solid #334155; color: #f8fafc;">
+            <div class="row g-0">
+                <aside class="col-lg-4 auth-aside p-4 p-md-5" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white;">
+                    <div class="position-relative" style="z-index: 1">
+                        <span class="badge rounded-pill text-bg-light mb-4 text-dark">STUDENT MEMBERSHIP</span>
+                        <h1 class="h2 fw-bold" style="letter-spacing: -0.05em">Make campus yours.</h1>
+                        <p class="text-white-50 mt-3">
+                            One account brings your event plans, registrations and campus discoveries together.
+                        </p>
+                        <div class="mt-5">
+                            <div class="d-flex gap-3 mb-4">
+                                <span class="feature-icon flex-shrink-0" style="color: #a78bfa; font-weight: bold;">✓</span>
+                                <div>
+                                    <div class="fw-semibold">Find what's happening</div>
+                                    <div class="small text-white-50">Explore student events around campus.</div>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3">
+                                <span class="feature-icon flex-shrink-0" style="color: #a78bfa; font-weight: bold;">⌂</span>
+                                <div>
+                                    <div class="fw-semibold">Keep plans in one place</div>
+                                    <div class="small text-white-50">See your upcoming registrations at a glance.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <section class="col-lg-8 p-4 p-md-5">
+                    <div class="small text-uppercase fw-semibold mb-2" style="color: #a78bfa !important;">A place to belong</div>
+                    <h2 class="h2 fw-bold mb-2 text-white" style="letter-spacing: -0.05em">Create your student account</h2>
+                    <p class="text-secondary mb-4">
+                        Join with your university details. Registration is for students.
+                    </p>
+
+                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger bg-danger bg-opacity-15 border-danger text-danger mb-3 rounded-3 small" role="alert"></div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="Input.FullName" class="form-label text-light small">Full name</label>
+                                <input asp-for="Input.FullName" class="form-control bg-dark border-secondary text-light py-2" placeholder="e.g. Aisha Khan" autocomplete="name" aria-required="true" style="border-color: #475569 !important;" />
+                                <span asp-validation-for="Input.FullName" class="text-danger small mt-1 d-block"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Input.Email" class="form-label text-light small">University email</label>
+                                <input asp-for="Input.Email" class="form-control bg-dark border-secondary text-light py-2" placeholder="you@university.edu" autocomplete="email" aria-required="true" style="border-color: #475569 !important;" />
+                                <span asp-validation-for="Input.Email" class="text-danger small mt-1 d-block"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Input.StudentId" class="form-label text-light small">Student ID</label>
+                                <input asp-for="Input.StudentId" class="form-control bg-dark border-secondary text-light py-2" placeholder="e.g. STU-24018" aria-required="true" style="border-color: #475569 !important;" />
+                                <span asp-validation-for="Input.StudentId" class="text-danger small mt-1 d-block"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Input.Department" class="form-label text-light small">Department</label>
+                                <input asp-for="Input.Department" class="form-control bg-dark border-secondary text-light py-2" placeholder="e.g. Computer Science" aria-required="true" style="border-color: #475569 !important;" />
+                                <span asp-validation-for="Input.Department" class="text-danger small mt-1 d-block"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Input.Password" class="form-label text-light small">Password</label>
+                                <input asp-for="Input.Password" class="form-control bg-dark border-secondary text-light py-2" placeholder="Create a password" autocomplete="new-password" aria-required="true" style="border-color: #475569 !important;" />
+                                <span asp-validation-for="Input.Password" class="text-danger small mt-1 d-block"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Input.ConfirmPassword" class="form-label text-light small">Confirm password</label>
+                                <input asp-for="Input.ConfirmPassword" class="form-control bg-dark border-secondary text-light py-2" placeholder="Enter it again" autocomplete="new-password" aria-required="true" style="border-color: #475569 !important;" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger small mt-1 d-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-text text-secondary mt-3 small">
+                            Use at least 8 characters, including an uppercase letter, a number, and a symbol.
+                        </div>
+                        <button id="registerSubmit" type="submit" class="btn w-100 py-3 mt-4 text-white fw-semibold shadow-sm" style="background-color: #6366f1; border: none; border-radius: 8px;">
+                            Create student account <span aria-hidden="true">→</span>
+                        </button>
+                    </form>
+
+                    <div class="text-center text-secondary small mt-4">
+                        Already have an account?
+                        <a class="fw-semibold text-decoration-none" asp-page="./Login" style="color: #a78bfa;">Log in</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

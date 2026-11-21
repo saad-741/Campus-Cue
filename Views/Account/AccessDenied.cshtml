@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Access Denied";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container py-5 text-center">
+    <div class="empty-state">
+        <div class="empty-state-icon">🚫</div>
+        <h1 class="empty-state-title" style="font-size:2rem;">Access Denied</h1>
+        <p class="empty-state-text">You do not have permission to access this page. Please sign in with an appropriate account.</p>
+        <div class="d-flex justify-content-center gap-2">
+            <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Sign In</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">Go Home</a>
+        </div>
+    </div>
+</div>

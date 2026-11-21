@@ -1,10 +1,255 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Admin home | CampusCue</title><link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"><link href="assets/campuscue.css" rel="stylesheet"></head>
-<body><nav class="navbar site-nav sticky-top"><div class="container-fluid px-lg-4 py-2"><a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><span class="brand-mark">CC</span><span class="brand-name">CampusCue</span><span class="badge rounded-pill badge-soft-blue ms-2 d-none d-sm-inline">ADMIN</span></a><div class="d-flex align-items-center gap-3"><a href="index.html" class="small text-decoration-none text-secondary d-none d-sm-inline">Public home</a><span class="avatar">AM</span><div class="small d-none d-md-block"><div class="fw-semibold">Alex Morgan</div><div class="text-secondary">Administrator</div></div><a href="login.html" class="btn btn-sm btn-outline-secondary">Log out</a></div></div></nav><div class="d-lg-none bg-white border-bottom px-3 py-2"><div class="d-flex gap-2 overflow-auto"><a class="btn btn-sm btn-soft text-nowrap" href="#overview">Overview</a><a class="btn btn-sm btn-outline-secondary text-nowrap" href="#users">Users</a><a class="btn btn-sm btn-outline-secondary text-nowrap" href="#categories">Categories</a><a class="btn btn-sm btn-outline-secondary text-nowrap" href="#events">All events</a></div></div>
-<div class="container-fluid app-shell"><div class="row"><aside class="col-lg-2 app-sidebar p-3 d-none d-lg-block"><div class="small text-secondary text-uppercase fw-bold px-3 mt-3 mb-2" style="letter-spacing:.1em">Administration</div><nav class="d-grid gap-1"><a class="side-link active" href="#overview"><span class="side-icon">⌂</span>Overview</a><a class="side-link" href="#users"><span class="side-icon">♙</span>All users</a><a class="side-link" href="#users"><span class="side-icon">♧</span>Students</a><a class="side-link" href="#users"><span class="side-icon">♧</span>Organizers</a><a class="side-link" href="#categories"><span class="side-icon">▦</span>Categories</a><a class="side-link" href="#events"><span class="side-icon">▣</span>All events</a></nav><div class="surface p-3 mt-5"><div class="fw-bold small">CampusCue status</div><div class="small text-secondary mt-1">Your campus community is growing.</div><span class="badge rounded-pill badge-soft-green mt-3">● All systems active</span></div></aside>
-<main class="col-lg-10 dashboard-content" id="overview"><div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4"><div><div class="eyebrow mb-2">Tuesday, October 20 · System overview</div><h1 class="h2 fw-bold mb-1" style="letter-spacing:-.05em">A clear view of campus activity.</h1><p class="text-secondary mb-0">Manage the community and see what’s happening across CampusCue.</p></div><a href="#users" class="btn btn-brand px-3">＋ Create organizer</a></div>
-<div class="row g-3 mb-4"><div class="col-6 col-xl-2"><div class="metric-card"><span class="metric-icon">♙</span><div class="metric-value mt-3">1,284</div><div class="metric-label">Students</div><div class="small text-success mt-2">↑ 8% this month</div></div></div><div class="col-6 col-xl-2"><div class="metric-card"><span class="metric-icon">♧</span><div class="metric-value mt-3">36</div><div class="metric-label">Organizers</div><div class="small text-secondary mt-2">Across campus</div></div></div><div class="col-6 col-xl-2"><div class="metric-card"><span class="metric-icon">▣</span><div class="metric-value mt-3">94</div><div class="metric-label">All events</div><div class="small text-secondary mt-2">This academic year</div></div></div><div class="col-6 col-xl-2"><div class="metric-card"><span class="metric-icon">↗</span><div class="metric-value mt-3">21</div><div class="metric-label">Published</div><div class="small text-secondary mt-2">Open to students</div></div></div><div class="col-6 col-xl-2"><div class="metric-card"><span class="metric-icon">✓</span><div class="metric-value mt-3">61</div><div class="metric-label">Completed</div><div class="small text-secondary mt-2">Events held</div></div></div><div class="col-6 col-xl-2"><div class="metric-card"><span class="metric-icon">×</span><div class="metric-value mt-3">3</div><div class="metric-label">Cancelled</div><div class="small text-secondary mt-2">This academic year</div></div></div></div>
-<div class="row g-4"><section class="col-xl-8" id="events"><div class="surface"><div class="p-3 p-md-4 border-bottom d-flex flex-wrap justify-content-between align-items-center gap-2"><div><h2 class="h5 fw-bold mb-1">Recent events</h2><div class="small text-secondary">Latest activity across all organizers</div></div><a href="#events" class="small text-decoration-none">View all events →</a></div><div class="table-responsive"><table class="table align-middle mb-0"><thead><tr><th>Event</th><th>Date</th><th>Organizer</th><th>Status</th></tr></thead><tbody><tr><td><div class="fw-semibold">Designing for people</div><div class="small text-secondary">Workshop · Design Studio</div></td><td class="small">Oct 22, 2026</td><td class="small">Jordan Malik</td><td><span class="badge rounded-pill badge-soft-green">Published</span></td></tr><tr><td><div class="fw-semibold">Meet the makers</div><div class="small text-secondary">Career · Main Auditorium</div></td><td class="small">Oct 23, 2026</td><td class="small">Jordan Malik</td><td><span class="badge rounded-pill badge-soft-green">Published</span></td></tr><tr><td><div class="fw-semibold">Campus code sprint</div><div class="small text-secondary">Competition · Computing Lab</div></td><td class="small">Oct 24, 2026</td><td class="small">Priya Shah</td><td><span class="badge rounded-pill badge-soft-green">Published</span></td></tr><tr><td><div class="fw-semibold">Building with data</div><div class="small text-secondary">Seminar · Room B12</div></td><td class="small">Nov 02, 2026</td><td class="small">Jordan Malik</td><td><span class="badge rounded-pill badge-soft-orange">Draft</span></td></tr></tbody></table></div><div class="p-3 border-top small text-secondary">System-wide view across all event organizers.</div></div></section>
-<section class="col-xl-4" id="users"><div class="surface h-100"><div class="p-3 p-md-4 border-bottom d-flex justify-content-between align-items-center"><div><h2 class="h5 fw-bold mb-1">Recently joined</h2><div class="small text-secondary">New community members</div></div><a href="#users" class="small text-decoration-none">All users</a></div><div class="list-group list-group-flush"><div class="list-group-item px-3 py-3"><div class="d-flex align-items-center gap-2"><span class="avatar">HA</span><div class="flex-grow-1"><div class="small fw-semibold">Hana Ali</div><div class="small text-secondary">Student · Oct 20</div></div><span class="badge rounded-pill badge-soft-green">Active</span></div></div><div class="list-group-item px-3 py-3"><div class="d-flex align-items-center gap-2"><span class="avatar" style="background:#f2e7dc">UR</span><div class="flex-grow-1"><div class="small fw-semibold">Usman Raza</div><div class="small text-secondary">Student · Oct 19</div></div><span class="badge rounded-pill badge-soft-green">Active</span></div></div><div class="list-group-item px-3 py-3"><div class="d-flex align-items-center gap-2"><span class="avatar" style="background:#e6e4f1">MA</span><div class="flex-grow-1"><div class="small fw-semibold">Mariam Akhtar</div><div class="small text-secondary">Organizer · Oct 18</div></div><span class="badge rounded-pill badge-soft-green">Active</span></div></div><div class="list-group-item px-3 py-3"><div class="d-flex align-items-center gap-2"><span class="avatar" style="background:#f3ead0">BK</span><div class="flex-grow-1"><div class="small fw-semibold">Bilal Khan</div><div class="small text-secondary">Student · Oct 18</div></div><span class="badge rounded-pill badge-soft-orange">Review</span></div></div></div><div class="p-3"><a href="#users" class="btn btn-sm btn-outline-secondary">Manage accounts</a></div></div></section></div>
-<section class="surface p-3 p-md-4 mt-4" id="categories"><div class="d-flex flex-wrap justify-content-between align-items-center gap-2"><div><h2 class="h5 fw-bold mb-1">Event categories</h2><div class="small text-secondary">A snapshot of the campus event mix</div></div><a href="#categories" class="btn btn-sm btn-soft">Manage categories</a></div><div class="d-flex flex-wrap gap-2 mt-3"><span class="category-chip">Workshops · 18</span><span class="category-chip">Seminars · 14</span><span class="category-chip">Competitions · 12</span><span class="category-chip">Sports · 9</span><span class="category-chip">Cultural · 16</span><span class="category-chip">Career fairs · 8</span><span class="category-chip">Hackathons · 6</span></div></section>
-</main></div></div><script src="assets/demo.js"></script></body></html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin home | CampusCue</title>
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/campuscue.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar site-nav sticky-top">
+        <div class="container-fluid px-lg-4 py-2">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <span class="brand-mark">CC</span><span class="brand-name">CampusCue</span><span class="badge rounded-pill badge-soft-blue ms-2 d-none d-sm-inline">ADMIN</span>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <a href="index.html" class="small text-decoration-none text-secondary d-none d-sm-inline">Public home</a><span class="avatar">AM</span>
+                <div class="small d-none d-md-block">
+                    <div class="fw-semibold">Alex Morgan</div>
+                    <div class="text-secondary">Administrator</div>
+                </div>
+                <a href="login.html" class="btn btn-sm btn-outline-secondary">Log out</a>
+            </div>
+        </div>
+    </nav>
+    <div class="d-lg-none bg-white border-bottom px-3 py-2">
+        <div class="d-flex gap-2 overflow-auto">
+            <a class="btn btn-sm btn-soft text-nowrap" href="#overview">Overview</a><a class="btn btn-sm btn-outline-secondary text-nowrap" href="#users">Users</a><a class="btn btn-sm btn-outline-secondary text-nowrap" href="#categories">Categories</a><a class="btn btn-sm btn-outline-secondary text-nowrap" href="#events">All events</a>
+        </div>
+    </div>
+    <div class="container-fluid app-shell">
+        <div class="row">
+            <aside class="col-lg-2 app-sidebar p-3 d-none d-lg-block">
+                <div class="small text-secondary text-uppercase fw-bold px-3 mt-3 mb-2"
+                     style="letter-spacing: 0.1em">
+                    Administration
+                </div>
+                <nav class="d-grid gap-1">
+                    <a class="side-link active" href="#overview"><span class="side-icon">⌂</span>Overview</a><a class="side-link" href="#users"><span class="side-icon">♙</span>All users</a><a class="side-link" href="#users"><span class="side-icon">♧</span>Students</a><a class="side-link" href="#users"><span class="side-icon">♧</span>Organizers</a><a class="side-link" href="#categories"><span class="side-icon">▦</span>Categories</a><a class="side-link" href="#events"><span class="side-icon">▣</span>All events</a>
+                </nav>
+                <div class="surface p-3 mt-5">
+                    <div class="fw-bold small">CampusCue status</div>
+                    <div class="small text-secondary mt-1">Your campus community is growing.</div>
+                    <span class="badge rounded-pill badge-soft-green mt-3">● All systems active</span>
+                </div>
+            </aside>
+            <main class="col-lg-10 dashboard-content" id="overview">
+                <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+                    <div>
+                        <div class="eyebrow mb-2">Tuesday, October 20 · System overview</div>
+                        <h1 class="h2 fw-bold mb-1" style="letter-spacing: -0.05em">
+                            A clear view of campus activity.
+                        </h1>
+                        <p class="text-secondary mb-0">
+                            Manage the community and see what’s happening across CampusCue.
+                        </p>
+                    </div>
+                    <a href="#users" class="btn btn-brand px-3">＋ Create organizer</a>
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-xl-2">
+                        <div class="metric-card">
+                            <span class="metric-icon">♙</span>
+                            <div class="metric-value mt-3">1,284</div>
+                            <div class="metric-label">Students</div>
+                            <div class="small text-success mt-2">↑ 8% this month</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-xl-2">
+                        <div class="metric-card">
+                            <span class="metric-icon">♧</span>
+                            <div class="metric-value mt-3">36</div>
+                            <div class="metric-label">Organizers</div>
+                            <div class="small text-secondary mt-2">Across campus</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-xl-2">
+                        <div class="metric-card">
+                            <span class="metric-icon">▣</span>
+                            <div class="metric-value mt-3">94</div>
+                            <div class="metric-label">All events</div>
+                            <div class="small text-secondary mt-2">This academic year</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-xl-2">
+                        <div class="metric-card">
+                            <span class="metric-icon">↗</span>
+                            <div class="metric-value mt-3">21</div>
+                            <div class="metric-label">Published</div>
+                            <div class="small text-secondary mt-2">Open to students</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-xl-2">
+                        <div class="metric-card">
+                            <span class="metric-icon">✓</span>
+                            <div class="metric-value mt-3">61</div>
+                            <div class="metric-label">Completed</div>
+                            <div class="small text-secondary mt-2">Events held</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-xl-2">
+                        <div class="metric-card">
+                            <span class="metric-icon">×</span>
+                            <div class="metric-value mt-3">3</div>
+                            <div class="metric-label">Cancelled</div>
+                            <div class="small text-secondary mt-2">This academic year</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <section class="col-xl-8" id="events">
+                        <div class="surface">
+                            <div class="p-3 p-md-4 border-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+                                <div>
+                                    <h2 class="h5 fw-bold mb-1">Recent events</h2>
+                                    <div class="small text-secondary">Latest activity across all organizers</div>
+                                </div>
+                                <a href="#events" class="small text-decoration-none">View all events →</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-middle mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Event</th>
+                                            <th>Date</th>
+                                            <th>Organizer</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="fw-semibold">Designing for people</div>
+                                                <div class="small text-secondary">Workshop · Design Studio</div>
+                                            </td>
+                                            <td class="small">Oct 22, 2026</td>
+                                            <td class="small">Jordan Malik</td>
+                                            <td>
+                                                <span class="badge rounded-pill badge-soft-green">Published</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="fw-semibold">Meet the makers</div>
+                                                <div class="small text-secondary">Career · Main Auditorium</div>
+                                            </td>
+                                            <td class="small">Oct 23, 2026</td>
+                                            <td class="small">Jordan Malik</td>
+                                            <td>
+                                                <span class="badge rounded-pill badge-soft-green">Published</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="fw-semibold">Campus code sprint</div>
+                                                <div class="small text-secondary">Competition · Computing Lab</div>
+                                            </td>
+                                            <td class="small">Oct 24, 2026</td>
+                                            <td class="small">Priya Shah</td>
+                                            <td>
+                                                <span class="badge rounded-pill badge-soft-green">Published</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="fw-semibold">Building with data</div>
+                                                <div class="small text-secondary">Seminar · Room B12</div>
+                                            </td>
+                                            <td class="small">Nov 02, 2026</td>
+                                            <td class="small">Jordan Malik</td>
+                                            <td><span class="badge rounded-pill badge-soft-orange">Draft</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="p-3 border-top small text-secondary">
+                                System-wide view across all event organizers.
+                            </div>
+                        </div>
+                    </section>
+                    <section class="col-xl-4" id="users">
+                        <div class="surface h-100">
+                            <div class="p-3 p-md-4 border-bottom d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h2 class="h5 fw-bold mb-1">Recently joined</h2>
+                                    <div class="small text-secondary">New community members</div>
+                                </div>
+                                <a href="#users" class="small text-decoration-none">All users</a>
+                            </div>
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item px-3 py-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="avatar">HA</span>
+                                        <div class="flex-grow-1">
+                                            <div class="small fw-semibold">Hana Ali</div>
+                                            <div class="small text-secondary">Student · Oct 20</div>
+                                        </div>
+                                        <span class="badge rounded-pill badge-soft-green">Active</span>
+                                    </div>
+                                </div>
+                                <div class="list-group-item px-3 py-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="avatar" style="background: #f2e7dc">UR</span>
+                                        <div class="flex-grow-1">
+                                            <div class="small fw-semibold">Usman Raza</div>
+                                            <div class="small text-secondary">Student · Oct 19</div>
+                                        </div>
+                                        <span class="badge rounded-pill badge-soft-green">Active</span>
+                                    </div>
+                                </div>
+                                <div class="list-group-item px-3 py-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="avatar" style="background: #e6e4f1">MA</span>
+                                        <div class="flex-grow-1">
+                                            <div class="small fw-semibold">Mariam Akhtar</div>
+                                            <div class="small text-secondary">Organizer · Oct 18</div>
+                                        </div>
+                                        <span class="badge rounded-pill badge-soft-green">Active</span>
+                                    </div>
+                                </div>
+                                <div class="list-group-item px-3 py-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="avatar" style="background: #f3ead0">BK</span>
+                                        <div class="flex-grow-1">
+                                            <div class="small fw-semibold">Bilal Khan</div>
+                                            <div class="small text-secondary">Student · Oct 18</div>
+                                        </div>
+                                        <span class="badge rounded-pill badge-soft-orange">Review</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <a href="#users" class="btn btn-sm btn-outline-secondary">Manage accounts</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <section class="surface p-3 p-md-4 mt-4" id="categories">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <div>
+                            <h2 class="h5 fw-bold mb-1">Event categories</h2>
+                            <div class="small text-secondary">A snapshot of the campus event mix</div>
+                        </div>
+                        <a href="#categories" class="btn btn-sm btn-soft">Manage categories</a>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                        <span class="category-chip">Workshops · 18</span><span class="category-chip">Seminars · 14</span><span class="category-chip">Competitions · 12</span><span class="category-chip">Sports · 9</span><span class="category-chip">Cultural · 16</span><span class="category-chip">Career fairs · 8</span><span class="category-chip">Hackathons · 6</span>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="assets/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+@model CampusCue.ViewModels.EventListViewModel
+@{
+    var detailsAction = ViewData["DetailsAction"]?.ToString() ?? "Details";
+}
+
+<div class="row g-4">
+    @if (!Model.Events.Items.Any())
+    {
+        <div class="col-12">
+            <div class="empty-state">
+                <div class="empty-state-icon">📅</div>
+                <div class="empty-state-title">No matching events</div>
+                <p class="empty-state-text">Try another search or check back later.</p>
+            </div>
+        </div>
+    }
+    @foreach (var ev in Model.Events.Items)
+    {
+        <div class="col-md-6 col-lg-4">
+            <article class="event-card h-100">
+                <div class="event-cover"><span class="cover-icon">✦</span></div>
+                <div class="p-3 d-flex flex-column flex-grow-1">
+                    <span class="category-chip align-self-start">@ev.CategoryName</span>
+                    <h2 class="h5 fw-bold mt-3 mb-2">@ev.Title</h2>
+                    <div class="event-meta mb-2">📅 @ev.EventDate.ToString("ddd, MMM d, yyyy") · @ev.StartTime.ToString("h:mm tt")</div>
+                    <div class="event-meta">📍 @ev.Venue</div>
+                    <p class="small text-secondary mt-3">@(ev.Description.Length > 140 ? ev.Description[..140] + "…" : ev.Description)</p>
+                    <div class="small text-muted mt-auto">@ev.AvailableSeats of @ev.Capacity seats available</div>
+                </div>
+                <div class="p-3 pt-0"><a href="@Url.Action(detailsAction, new { id = ev.EventId })" class="btn btn-brand btn-sm w-100">View details</a></div>
+            </article>
+        </div>
+    }
+</div>
+
+@if (Model.Events.TotalPages > 1)
+{
+    <nav class="mt-4" aria-label="Event pages">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(Model.Events.HasPreviousPage ? "" : "disabled")"><a class="page-link" href="?search=@Uri.EscapeDataString(Model.Search ?? "")&categoryId=@Model.CategoryId&upcomingOnly=@Model.UpcomingOnly&page=@(Model.Events.PageNumber - 1)" data-ajax-page="@(Model.Events.PageNumber - 1)">Previous</a></li>
+            <li class="page-item disabled"><span class="page-link">Page @Model.Events.PageNumber of @Model.Events.TotalPages</span></li>
+            <li class="page-item @(Model.Events.HasNextPage ? "" : "disabled")"><a class="page-link" href="?search=@Uri.EscapeDataString(Model.Search ?? "")&categoryId=@Model.CategoryId&upcomingOnly=@Model.UpcomingOnly&page=@(Model.Events.PageNumber + 1)" data-ajax-page="@(Model.Events.PageNumber + 1)">Next</a></li>
+        </ul>
+    </nav>
+}

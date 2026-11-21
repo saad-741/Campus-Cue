@@ -1,0 +1,70 @@
+/* MVC-specific bridge between the sample CampusCue visual system and Razor pages. */
+body {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.btn-primary,
+.btn-success {
+    color: #fff;
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-success:hover,
+.btn-success:focus {
+    color: #fff;
+    background-color: var(--green-dark);
+    border-color: var(--green-dark);
+}
+
+.btn-outline-primary {
+    color: var(--green);
+    border-color: var(--green);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    color: #fff;
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.card {
+    border: 1px solid var(--line) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 8px 28px rgba(23, 48, 33, .045) !important;
+}
+
+.card-header,
+.card-footer {
+    background: #fff;
+    border-color: var(--line);
+}
+
+.page-link {
+    color: var(--green);
+}
+
+.page-item.active .page-link {
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.table > :not(caption) > * > * {
+    border-color: var(--line);
+}
+
+.event-card .btn {
+    white-space: normal;
+}
+
+.alert {
+    border-radius: 12px;
+}
+
+.dashboard-content > .alert:first-child {
+    margin-bottom: 1.25rem;
+}

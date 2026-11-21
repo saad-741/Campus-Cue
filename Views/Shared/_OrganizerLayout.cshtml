@@ -1,0 +1,47 @@
+@{
+    var displayName = User.Identity?.Name ?? "Organizer";
+    var avatar = displayName.Length > 0 ? displayName[..1].ToUpperInvariant() : "O";
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] | CampusCue Organizer</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/static/assets/campuscue.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/campuscue-mvc.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <nav class="navbar site-nav sticky-top"><div class="container-fluid px-lg-4 py-2">
+        <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Organizer" asp-action="Index"><span class="brand-mark">CC</span><span class="brand-name">CampusCue</span><span class="badge rounded-pill badge-soft-orange ms-2 d-none d-sm-inline">ORGANIZER</span></a>
+        <div class="d-flex align-items-center gap-3"><a asp-controller="Home" asp-action="Index" class="small text-decoration-none text-secondary d-none d-sm-inline">Public home</a><span class="avatar">@avatar</span><div class="small d-none d-md-block"><div class="fw-semibold">@displayName</div><div class="text-secondary">Organizer</div></div><form method="post" asp-controller="Account" asp-action="Logout" class="m-0">@Html.AntiForgeryToken()<button type="submit" class="btn btn-sm btn-outline-secondary">Log out</button></form></div>
+    </div></nav>
+    <div class="d-lg-none bg-white border-bottom px-3 py-2"><div class="d-flex gap-2 overflow-auto">
+        <a class="btn btn-sm btn-soft text-nowrap" asp-controller="Organizer" asp-action="Index">Overview</a><a class="btn btn-sm btn-outline-secondary text-nowrap" asp-controller="Organizer" asp-action="MyEvents">My events</a><a class="btn btn-sm btn-outline-secondary text-nowrap" asp-controller="Organizer" asp-action="CreateEvent">Create event</a><a class="btn btn-sm btn-outline-secondary text-nowrap" asp-controller="Organizer" asp-action="AttendanceReports">Reports</a>
+    </div></div>
+    <div class="container-fluid app-shell"><div class="row">
+        <aside class="col-lg-2 app-sidebar p-3 d-none d-lg-block">
+            <div class="small text-secondary text-uppercase fw-bold px-3 mt-3 mb-2" style="letter-spacing:.1em">Workspace</div>
+            <nav class="d-grid gap-1">
+                <a class="side-link @(action == "Index" ? "active" : "")" asp-controller="Organizer" asp-action="Index"><span class="side-icon">⌂</span>Overview</a>
+                <a class="side-link @(action == "MyEvents" ? "active" : "")" asp-controller="Organizer" asp-action="MyEvents"><span class="side-icon">▣</span>My events</a>
+                <a class="side-link @(action is "CreateEvent" or "EditEvent" ? "active" : "")" asp-controller="Organizer" asp-action="CreateEvent"><span class="side-icon">＋</span>Create event</a>
+                <a class="side-link @(action is "AttendanceReports" or "Attendance" ? "active" : "")" asp-controller="Organizer" asp-action="AttendanceReports"><span class="side-icon">◷</span>Attendance reports</a>
+            </nav>
+            <div class="surface p-3 mt-5"><div class="fw-bold small">Your next big event</div><div class="small text-secondary mt-1">Plan it, publish it, and bring campus together.</div><a asp-controller="Organizer" asp-action="CreateEvent" class="btn btn-sm btn-soft w-100 mt-3">Create an event</a></div>
+        </aside>
+        <main class="col-lg-10 dashboard-content">
+            @if (TempData["Success"] is string success) { <div class="alert alert-success alert-dismissible fade show" role="alert">@success<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> }
+            @if (TempData["Error"] is string error) { <div class="alert alert-danger alert-dismissible fade show" role="alert">@error<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> }
+            @if (TempData["Warning"] is string warning) { <div class="alert alert-warning alert-dismissible fade show" role="alert">@warning<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> }
+            @RenderBody()
+        </main>
+    </div></div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script><script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script><script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

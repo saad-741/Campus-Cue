@@ -1,201 +1,79 @@
+@{
+    var controllerName = ViewContext.RouteData.Values["controller"]?.ToString();
+    var actionName = ViewContext.RouteData.Values["action"]?.ToString();
+    var isAuthPage = controllerName == "Account" && (actionName is "Login" or "Register");
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="CampusCue — Discover, register, and manage university events all in one place." />
+    <meta name="description" content="CampusCue — discover and join university events." />
     <title>@ViewData["Title"] - CampusCue</title>
-
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/static/assets/campuscue.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/campuscue-mvc.css" asp-append-version="true" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
-
-    <!-- Modernization Overrides -->
-    <style>
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: #fcfcfd;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Keeps footer at bottom */
-        }
-
-        main {
-            flex: 1;
-        }
-
-        .brand-accent {
-            color: #4F46E5; /* Modern Indigo */
-        }
-
-        .navbar-modern {
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        .nav-link {
-            color: #4b5563;
-            font-weight: 500;
-            padding: 0.5rem 1rem !important;
-            transition: color 0.2s ease;
-        }
-
-            .nav-link:hover {
-                color: #111827;
-            }
-
-        .btn-modern-outline {
-            border: 1px solid #e5e7eb;
-            color: #374151;
-            font-weight: 500;
-            border-radius: 8px;
-            background: transparent;
-            transition: all 0.2s;
-        }
-
-            .btn-modern-outline:hover {
-                background-color: #f3f4f6;
-                color: #111827;
-            }
-
-        .btn-modern-primary {
-            background-color: #111827;
-            color: #ffffff;
-            font-weight: 500;
-            border: none;
-            border-radius: 8px;
-            transition: background-color 0.2s;
-        }
-
-            .btn-modern-primary:hover {
-                background-color: #374151;
-                color: #ffffff;
-            }
-
-        .footer-link {
-            color: #9ca3af;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-            .footer-link:hover {
-                color: #ffffff;
-            }
-
-        .alert-modern {
-            border: none;
-            border-radius: 12px;
-        }
-    </style>
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <!-- Public Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-modern sticky-top shadow-sm py-3">
-        <div class="container">
-            <a class="navbar-brand fw-bold fs-4" asp-controller="Home" asp-action="Index">
-                Campus<span class="brand-accent">Cue</span>
-            </a>
-            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#publicNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="publicNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1 ms-lg-4">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Event" asp-action="Index">Events</a>
-                    </li>
-                </ul>
-                <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-                    @if (User.Identity?.IsAuthenticated == true)
-                    {
-                        <span class="text-secondary fw-medium me-2">@User.Identity.Name</span>
-                        <form method="post" asp-controller="Account" asp-action="Logout" class="d-inline m-0">
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-modern-outline px-4 py-2">Sign Out</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <a asp-controller="Account" asp-action="Login" class="btn btn-modern-outline px-4 py-2">Sign In</a>
-                        <a asp-controller="Account" asp-action="Register" class="btn btn-modern-primary px-4 py-2">Register Free</a>
-                    }
+    <nav class="navbar navbar-expand-lg site-nav sticky-top">
+        <div class="container py-2">
+            <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index"><span class="brand-mark">CC</span><span class="brand-name">CampusCue</span></a>
+            @if (isAuthPage)
+            {
+                <a class="small text-decoration-none text-secondary" asp-controller="Home" asp-action="Index">← Back to home</a>
+            }
+            else
+            {
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#publicNav" aria-controls="publicNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="publicNav">
+                    <div class="navbar-nav mx-auto gap-lg-3">
+                        <a class="nav-link @(controllerName == "Home" ? "active" : "")" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link @(controllerName == "Event" ? "active" : "")" asp-controller="Event" asp-action="Index">Discover events</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Home")#how-it-works">How it works</a>
+                    </div>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mt-3 mt-lg-0">
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            @if (User.IsInRole("Admin")) { <a asp-controller="Admin" asp-action="Index" class="btn btn-outline-success px-3">Dashboard</a> }
+                            else if (User.IsInRole("Organizer")) { <a asp-controller="Organizer" asp-action="Index" class="btn btn-outline-success px-3">Dashboard</a> }
+                            else if (User.IsInRole("Student")) { <a asp-controller="Student" asp-action="Index" class="btn btn-outline-success px-3">Dashboard</a> }
+                            <form method="post" asp-controller="Account" asp-action="Logout" class="m-0">@Html.AntiForgeryToken()<button type="submit" class="btn btn-brand px-3">Log out</button></form>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-outline-success px-3">Log in</a>
+                            <a asp-controller="Account" asp-action="Register" class="btn btn-brand px-3">Join CampusCue <span aria-hidden="true">↗</span></a>
+                        }
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </nav>
 
-    <!-- TempData Alerts -->
-    <div class="container mt-4">
-        @if (TempData["Success"] is string success)
-        {
-            <div class="alert alert-success alert-dismissible fade show alert-modern shadow-sm d-flex align-items-center" role="alert">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-3 flex-shrink-0" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" /></svg>
-                <div>@success</div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        }
-        @if (TempData["Error"] is string error)
-        {
-            <div class="alert alert-danger alert-dismissible fade show alert-modern shadow-sm d-flex align-items-center" role="alert">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-3 flex-shrink-0" viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" /></svg>
-                <div>@error</div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        }
-        @if (TempData["Warning"] is string warning)
-        {
-            <div class="alert alert-warning alert-dismissible fade show alert-modern shadow-sm d-flex align-items-center" role="alert">
-                <span class="me-3 fs-5 flex-shrink-0">⚠</span>
-                <div>@warning</div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        }
-    </div>
+    @if (TempData.Peek("Success") is string || TempData.Peek("Error") is string || TempData.Peek("Warning") is string)
+    {
+        <div class="container pt-3">
+            @if (TempData["Success"] is string successMessage) { <div class="alert alert-success alert-dismissible fade show" role="alert">@successMessage<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> }
+            @if (TempData["Error"] is string errorMessage) { <div class="alert alert-danger alert-dismissible fade show" role="alert">@errorMessage<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> }
+            @if (TempData["Warning"] is string warningMessage) { <div class="alert alert-warning alert-dismissible fade show" role="alert">@warningMessage<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> }
+        </div>
+    }
 
-    <!-- Page Content -->
-    <main class="py-4">
-        @RenderBody()
-    </main>
+    <main>@RenderBody()</main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-light py-5 mt-auto">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-4 col-md-6">
-                    <div class="fs-4 fw-bold mb-3">Campus<span class="brand-accent">Cue</span></div>
-                    <p class="text-white-50 mb-0" style="line-height: 1.7;">
-                        Your university's central hub for discovering, registering, and managing campus events.
-                    </p>
-                </div>
-                <div class="col-lg-2 col-md-3 col-6 offset-lg-2">
-                    <h6 class="text-uppercase fw-semibold mb-3 text-white" style="letter-spacing: 0.5px;">Platform</h6>
-                    <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                        <li><a asp-controller="Home" asp-action="Index" class="footer-link">Home</a></li>
-                        <li><a asp-controller="Event" asp-action="Index" class="footer-link">Events</a></li>
-                        <li><a asp-controller="Account" asp-action="Register" class="footer-link">Register</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-3 col-6">
-                    <h6 class="text-uppercase fw-semibold mb-3 text-white" style="letter-spacing: 0.5px;">Account</h6>
-                    <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                        <li><a asp-controller="Account" asp-action="Login" class="footer-link">Sign In</a></li>
-                        <li><a asp-controller="Account" asp-action="Register" class="footer-link">Student Sign Up</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="border-secondary opacity-25 my-4" />
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-white-50 small">
-                <div>&copy; @DateTime.Now.Year CampusCue — University Event Management System</div>
-            </div>
+    @if (!isAuthPage)
+    {
+    <footer class="footer py-4 bg-white">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <a class="d-flex align-items-center gap-2 text-decoration-none" asp-controller="Home" asp-action="Index"><span class="brand-mark">CC</span><span class="brand-name">CampusCue</span></a>
+            <span class="small align-self-center">A little more life between lectures.</span>
+            <a class="small align-self-center text-decoration-none" asp-controller="Event" asp-action="Index">Explore campus events</a>
         </div>
     </footer>
+    }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

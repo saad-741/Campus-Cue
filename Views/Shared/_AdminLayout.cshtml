@@ -1,0 +1,56 @@
+@{
+    var displayName = User.Identity?.Name ?? "Administrator";
+    var avatar = displayName.Length > 0 ? displayName[..1].ToUpperInvariant() : "A";
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] | CampusCue Admin</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/static/assets/campuscue.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/campuscue-mvc.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <nav class="navbar site-nav sticky-top">
+        <div class="container-fluid px-lg-4 py-2">
+            <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Admin" asp-action="Index"><span class="brand-mark">CC</span><span class="brand-name">CampusCue</span><span class="badge rounded-pill badge-soft-blue ms-2 d-none d-sm-inline">ADMIN</span></a>
+            <div class="d-flex align-items-center gap-3"><a asp-controller="Home" asp-action="Index" class="small text-decoration-none text-secondary d-none d-sm-inline">Public home</a><span class="avatar">@avatar</span><div class="small d-none d-md-block"><div class="fw-semibold">@displayName</div><div class="text-secondary">Administrator</div></div>
+                <form method="post" asp-controller="Account" asp-action="Logout" class="m-0">@Html.AntiForgeryToken()<button type="submit" class="btn btn-sm btn-outline-secondary">Log out</button></form>
+            </div>
+        </div>
+    </nav>
+    <div class="d-lg-none bg-white border-bottom px-3 py-2"><div class="d-flex gap-2 overflow-auto">
+        <a class="btn btn-sm btn-soft text-nowrap" asp-controller="Admin" asp-action="Index">Overview</a><a class="btn btn-sm btn-outline-secondary text-nowrap" asp-controller="Admin" asp-action="Users">Users</a><a class="btn btn-sm btn-outline-secondary text-nowrap" asp-controller="Category" asp-action="Index">Categories</a><a class="btn btn-sm btn-outline-secondary text-nowrap" asp-controller="Admin" asp-action="Events">All events</a>
+    </div></div>
+    <div class="container-fluid app-shell"><div class="row">
+        <aside class="col-lg-2 app-sidebar p-3 d-none d-lg-block">
+            <div class="small text-secondary text-uppercase fw-bold px-3 mt-3 mb-2" style="letter-spacing:.1em">Administration</div>
+            <nav class="d-grid gap-1">
+                <a class="side-link @(controller == "Admin" && action == "Index" ? "active" : "")" asp-controller="Admin" asp-action="Index"><span class="side-icon">⌂</span>Overview</a>
+                <a class="side-link @(controller == "Admin" && action is "Users" or "Students" or "Organizers" or "UserDetails" ? "active" : "")" asp-controller="Admin" asp-action="Users"><span class="side-icon">♙</span>All users</a>
+                <a class="side-link @(controller == "Admin" && action == "Students" ? "active" : "")" asp-controller="Admin" asp-action="Students"><span class="side-icon">♧</span>Students</a>
+                <a class="side-link @(controller == "Admin" && action == "Organizers" ? "active" : "")" asp-controller="Admin" asp-action="Organizers"><span class="side-icon">♧</span>Organizers</a>
+                <a class="side-link @(controller == "Category" ? "active" : "")" asp-controller="Category" asp-action="Index"><span class="side-icon">▦</span>Categories</a>
+                <a class="side-link @(controller == "Admin" && action is "Events" or "EventDetails" ? "active" : "")" asp-controller="Admin" asp-action="Events"><span class="side-icon">▣</span>All events</a>
+                <a class="side-link @(controller == "Admin" && action == "CreateOrganizer" ? "active" : "")" asp-controller="Admin" asp-action="CreateOrganizer"><span class="side-icon">＋</span>Create organizer</a>
+                <a class="side-link @(controller == "Admin" && action == "CreateEvent" ? "active" : "")" asp-controller="Admin" asp-action="CreateEvent"><span class="side-icon">＋</span>Create event</a>
+            </nav>
+            <div class="surface p-3 mt-5"><div class="fw-bold small">CampusCue status</div><div class="small text-secondary mt-1">Your campus community is growing.</div><span class="badge rounded-pill badge-soft-green mt-3">● Administration ready</span></div>
+        </aside>
+        <main class="col-lg-10 dashboard-content">
+            @if (TempData["Success"] is string success) { <div class="alert alert-success alert-dismissible fade show" role="alert">@success<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> }
+            @if (TempData["Error"] is string error) { <div class="alert alert-danger alert-dismissible fade show" role="alert">@error<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> }
+            @if (TempData["Warning"] is string warning) { <div class="alert alert-warning alert-dismissible fade show" role="alert">@warning<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> }
+            @RenderBody()
+        </main>
+    </div></div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script><script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script><script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

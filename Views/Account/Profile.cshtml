@@ -1,0 +1,85 @@
+@model CampusCue.ViewModels.ProfileViewModel
+@using CampusCue.Constants
+@{
+    ViewData["Title"] = "My Profile";
+    var role = Model.Roles.FirstOrDefault() ?? "User";
+    if (role == AppRoles.Admin) Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    else if (role == AppRoles.Organizer) Layout = "~/Views/Shared/_OrganizerLayout.cshtml";
+    else Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    ViewBag.SidebarActive = "Profile";
+}
+<div class="page-header">
+    <h2 class="page-header-title">My Profile</h2>
+    <p class="page-header-subtitle">Manage your personal information</p>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <div class="user-avatar mx-auto mb-3" style="width:80px;height:80px;font-size:2rem;border-radius:50%;background:linear-gradient(135deg,var(--cc-primary),var(--cc-secondary));color:white;display:flex;align-items:center;justify-content:center;">
+                    @(Model.FullName.Length > 0 ? Model.FullName[0].ToString().ToUpper() : "U")
+                </div>
+                <h5 class="fw-700 mb-1">@Model.FullName</h5>
+                <p class="text-muted fs-sm mb-2">@Model.Email</p>
+                @if (Model.StudentId != null)
+                {
+                    <p class="fs-sm mb-2"><span class="text-muted">Student ID:</span> <strong>@Model.StudentId</strong></p>
+                }
+                @foreach (var r in Model.Roles)
+                {
+                    <span class="badge-status @r.ToLower()">@r</span>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">Edit Profile</div>
+            <div class="card-body">
+                <form asp-action="Profile" method="post">
+                    @if (ViewContext.ModelState.ErrorCount > 0)
+                    {
+                        <div class="alert alert-danger mb-3">
+                            <ul class="mb-0 ps-3">
+                                @foreach (var err in ViewContext.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <li>@err.ErrorMessage</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="text" class="form-control" value="@Model.Email" disabled />
+                        <div class="fs-xs text-muted mt-1">Email cannot be changed.</div>
+                    </div>
+                    @if (Model.StudentId != null)
+                    {
+                        <div class="mb-3">
+                            <label class="form-label">Student ID</label>
+                            <input type="text" class="form-control" value="@Model.StudentId" disabled />
+                            <div class="fs-xs text-muted mt-1">Student ID cannot be changed.</div>
+                        </div>
+                    }
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label">Full Name</label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger fs-xs"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Department" class="form-label">Department</label>
+                        <input asp-for="Department" class="form-control" placeholder="e.g. Computer Science" />
+                        <span asp-validation-for="Department" class="text-danger fs-xs"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
